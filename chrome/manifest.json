@@ -22,5 +22,11 @@
     "default_popup": "popup.html"
   },
   "permissions": ["tabs", "storage", "scripting"],
-  "host_permissions": ["http://*/*", "https://*/*"]
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

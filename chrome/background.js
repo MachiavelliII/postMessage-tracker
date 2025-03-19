@@ -59,6 +59,17 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
   const tabId = sender.tab.id;
   console.log("Message from content script:", msg);
 
+  if (msg.type === "injectScript") {
+    chrome.scripting
+      .executeScript({
+        target: { tabId: tabId, allFrames: true },
+        files: ["injected.js"],
+        world: "MAIN",
+      })
+      .catch((e) => console.error("Script injection failed:", e));
+    return;
+  }
+
   if (msg.listener) {
     if (msg.listener === "function () { [native code] }") return;
     msg.parent_url = sender.tab.url;
