@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head></head>
-<body>
-	<div id='response'></div>
-	<div id="options">
-		Log-URL:
-		<input type="text" id="log-url" size="40" />
-		<button id="save">Save</button>
-		<div id="status"></div>
-	</div>
-	<script src="options.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>postMessage-tracker Options</title>
+    <style>
+      body {
+        padding: 10px;
+        font-family: Arial, sans-serif;
+      }
+      #status {
+        margin-top: 10px;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="options">
+      Log-URL:
+      <input type="text" id="log-url" size="40" />
+      <button id="save">Save</button>
+      <div id="status"></div>
+    </div>
+    <script src="options.js"></script>
+  </body>
 </html>
