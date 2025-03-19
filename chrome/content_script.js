@@ -291,9 +291,19 @@ window.addEventListener("beforeunload", () => {
 });
 
 (function () {
-  if (document.contentType === "application/xml") return;
-  const script = document.createElement("script");
-  script.setAttribute("type", "text/javascript");
-  script.appendChild(document.createTextNode(injectedJSString));
-  document.documentElement.appendChild(script);
+  if (
+    document.contentType === "application/xml" ||
+    document.contentType === "application/xhtml+xml"
+  )
+    return;
+  try {
+    const script = document.createElement("script");
+    script.setAttribute("type", "text/javascript");
+    script.textContent = injectedJSString;
+    document.documentElement.appendChild(script);
+    script.remove();
+  } catch (e) {
+    console.error("Failed to inject script:", e);
+    chrome.runtime.sendMessage({ log: ["Injection error", e.message] });
+  }
 })();
